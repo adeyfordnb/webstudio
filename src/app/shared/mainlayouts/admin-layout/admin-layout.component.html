@@ -1,0 +1,28 @@
+<div class="main-wrap">
+  <div class="links" *ngIf="auth.isAuthenticated()">
+    <ul class="list-links">
+      <li>
+        <a [routerLink]="['/admin', 'slider']" class="link" routerLinkActive="active-route">
+          <fa-icon class="fa-1x icons" [icon]="slideIcon"></fa-icon>
+          Add Slider
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/admin', 'posts']" class="link" routerLinkActive="active-route">
+          <fa-icon class="fa-1x icons" [icon]="post"></fa-icon>
+          Posts
+        </a>
+      </li>
+    </ul>
+
+    <button class="btn-logout" (click)="logout($event)">
+      <fa-icon class="fa-1x icons" [icon]="settings"></fa-icon>
+      Log out
+    </button>
+  </div>
+  <div class="components">
+
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

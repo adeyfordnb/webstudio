@@ -1,0 +1,103 @@
+<div class="warp">
+
+  <div class="nav-menu" [class.nav-menu-active]="navActiveMenu">
+    <div class="nav-menu-wrap">
+      <div class="nav-button" (click)="nav_event()" [class.nav-active]="navActive">
+        <span class="line"></span>
+      </div>
+      <div class="menu">
+        <div class="main-close-button" (click)="close_nav()">
+          <div class="close-button">
+            <span id="circle-line"></span>
+          </div>
+        </div>
+        <a href="">gallery</a>
+        <a href="">contacts</a>
+        <a href="">about us</a>
+      </div>
+    </div>
+  </div>
+  <!--MAIN-STAGE-->
+  <div class="main-stage">
+
+    <div class="sides">
+      <!--RIGHT-SIDE-->
+      <div class="right-side">
+        <!--IMG-->
+        <div class="img">
+
+          <div class="block-change-text">
+
+            <ngx-slick-carousel class="carousel carousel-text"
+                                #slickModalText="slick-carousel"
+                                [config]="slideConfigText">
+              <div ngxSlickItem *ngFor="let slide of slides" class="slide-text">
+                <p class="block-change-text-p">{{ slide.text }}</p>
+              </div>
+              <div ngxSlickItem *ngFor="let slide of slides" class="slide-text">
+                <p class="block-change-text-p">{{ slide.text }}</p>
+              </div>
+            </ngx-slick-carousel>
+
+          </div>
+
+          <ngx-slick-carousel class="carousel img-slider"
+                              #slickModalImg="slick-carousel"
+                              (afterChange)="slick_init($event)"
+                              [config]="slideConfig">
+            <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+              <img class="slide-img" src="{{ slide.url }}">
+            </div>
+            <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+              <img class="slide-img" src="{{ slide.url }}">
+            </div>
+          </ngx-slick-carousel>
+
+          <div class="text-block">
+            <h5>photo studio</h5>
+            <h1>milk photo</h1>
+          </div>
+        </div>
+      </div>
+      <!--LEFT-SIDE-->
+      <div class="left-side">
+        <div class="left-side-block">
+          <div class="counter" *ngIf="slides.length > 1">
+            <ngx-slick-carousel class="carousel"
+                                #slickModalCounter="slick-carousel"
+                                [config]="slideConfigCounter">
+              <div ngxSlickItem *ngFor="let slide of slides; let i = index;" class="slide-text">
+                <p class="counter-number">{{ i + 1 }}</p>
+              </div>
+              <div ngxSlickItem *ngFor="let slide of slides; let i = index;" class="slide-text">
+                <p class="counter-number">{{ i + 1 }}</p>
+              </div>
+            </ngx-slick-carousel>
+          </div>
+          <div class="text-left-side">
+            <p>The milk photo studio has a lot of rooms that are suitable for different styles of photoshoots.
+              Examples you can see on the slide.</p>
+          </div>
+          <div class="buttons">
+            <button class="button" (click)="slide_pre()">pre</button>
+            <span id="line-button"></span>
+            <button class="button" (click)="slide_next()">nxt</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <div class="group-links">
+        <a href=""><fa-icon class="fa-lg" [icon]="facebook"></fa-icon></a>
+        <a href=""><fa-icon class="fa-lg" [icon]="telegram"></fa-icon></a>
+        <a href=""><fa-icon class="fa-lg" [icon]="instagram"></fa-icon></a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+

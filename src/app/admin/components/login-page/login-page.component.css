@@ -1,0 +1,127 @@
+.main-wrap {
+  width: 100%;
+  height: 100vh;
+  background-color: #161616;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*FORMS-ERRORS*/
+.forms-error {
+  border-radius: 50px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  color: #161616;
+  top: -55px;
+  height: 37px;
+  width: 200px;
+  background-color: #FA1B00;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.inputs {
+  border-bottom: 3px solid green;
+}
+
+/*FORM*/
+.admin-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 360px;
+  height: 470px;
+  box-shadow: 0px 4px 23px 11px rgba(0,0,0,0.25);
+}
+
+label {
+  margin: 0 0 10px 15px;
+}
+
+/*FORM-CONTROL*/
+.form-control {
+  display: flex;
+  flex-direction: column;
+  color: #A6A6A6;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.form-control > input {
+  width: 291px;
+  height: 38px;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  padding: 0 15px;
+  font-size: 14px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.form-control > input::placeholder {
+  color: #A6A6A6;
+  opacity: .5;
+  font-weight: lighter;
+}
+
+#first-control {
+  margin-bottom: 30px;
+}
+
+/*ERRORS BLOCK*/
+.error-block {
+  position: absolute;
+  right: 15px;
+  background-color: #F0F0F0;
+  border-radius: 50px;
+  padding: 3px 6px;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #161616;
+  top: -4px;
+}
+
+.error-message:after {
+  content: '';
+  border: 8px solid transparent;
+  border-top: 8px solid #F0F0F0;
+  position: absolute;
+  top: 19px;
+  right: 53px;
+}
+
+/*BUTTON*/
+.admin-button {
+  width: 100px;
+  height: 38px;
+  background-color: #FF9900;
+  color: #F0F0F0;
+  font-weight: bold;
+  border-radius: 50px;
+  outline: none;
+  border: none;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 36px;
+}
+
+.admin-button:hover {
+  cursor: pointer;
+}
+
+.admin-button[disabled], .admin-button[disabled]:hover {
+  background-color: black;
+  cursor: no-drop;
+}
+
+
+

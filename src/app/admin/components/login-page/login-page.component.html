@@ -1,0 +1,68 @@
+<div class="main-wrap">
+
+<!-- FORM -->
+  <form
+    class="admin-form"
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+  >
+
+    <div class="forms-error" *ngIf="auth.error$ | async as error">
+      <p>{{ error }}</p>
+    </div>
+    <div class="forms-error" *ngIf="message">
+      <p>{{ message }}</p>
+    </div>
+
+    <h1 class="admin-text">admin panel</h1>
+<!--  FORM CONTROLS  -->
+    <div
+      id="first-control"
+      class="form-control"
+      [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
+    >
+      <label for="login">login:</label>
+      <input class="inputs" type="text" id="login" placeholder="Enter login..." formControlName="email">
+
+<!--   ERROR-BLOCK   -->
+      <span
+        class="error-block"
+        *ngIf="form.get('email').touched && form.get('email').invalid"
+      >
+        <small class="error-message" *ngIf="form.get('email').errors.required">
+          Email must be not empty!
+        </small>
+        <small class="error-message" *ngIf="form.get('email').errors.email">
+          Incorrect email's format!
+        </small>
+      </span>
+    </div>
+
+    <div
+      class="form-control"
+      [ngClass]="{invalid: form.get('password').touched && form.get('password').invalid}"
+    >
+      <label for="password">password:</label>
+      <input class="inputs" type="password" id="password" placeholder="Enter password..." formControlName="password">
+
+<!--   ERROR-BLOCK   -->
+      <span class="error-block"
+        *ngIf="form.get('password').touched && form.get('password').invalid">
+        <small class="error-message" *ngIf="form.get('password').errors.required">
+          Password must be not empty!
+        </small>
+        <small class="error-message" *ngIf="form.get('password').errors.minlength">
+          Short password!
+        </small>
+      </span>
+    </div>
+
+<!-- BUTTON -->
+    <button
+      type="submit"
+      class="admin-button"
+      [disabled]="form.invalid || submitted"
+    >войти</button>
+  </form>
+
+</div>
