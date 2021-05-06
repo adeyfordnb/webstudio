@@ -1,10 +1,16 @@
 <div class="main-wrap">
   <div class="links" *ngIf="auth.isAuthenticated()">
+
+    <div class="admin-logo">
+      <fa-icon class="fa-1x admin-icon" [icon]="tools"></fa-icon>
+      Admin Dashboard
+    </div>
+
     <ul class="list-links">
       <li>
         <a [routerLink]="['/admin', 'slider']" class="link" routerLinkActive="active-route">
           <fa-icon class="fa-1x icons" [icon]="slideIcon"></fa-icon>
-          Add Slider
+          Edit main page
         </a>
       </li>
       <li>

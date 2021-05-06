@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+//Icons
 import { faFileImage } from '@fortawesome/free-solid-svg-icons';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
+import { faAlignJustify } from '@fortawesome/free-solid-svg-icons';
+import { faAlignLeft } from '@fortawesome/free-solid-svg-icons';
+import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
+
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
@@ -19,6 +25,10 @@ export class SliderComponent implements OnInit {
 
   //Icons
   image = faFileImage;
+  img = faImage;
+  text = faAlignJustify;
+  description = faAlignLeft;
+  social = faUserFriends;
 
   //Slider example text
   exsText: string = '';
@@ -26,6 +36,15 @@ export class SliderComponent implements OnInit {
   //URLS for template
   placeholder: any = 'assets/placeholders/525x650.jpg';
   downloadUrl: string = '';
+
+  //The object which will be send to firebase
+  mainPageObj = {
+    mainText: {
+      firstBlock: '',
+      secondBlock: ''
+    },
+    description: 'In this block will be show text which your type in this area. The recommend numbers of symbol are 350.'
+  }
 
   constructor(
     private angularFire: AngularFireStorage,
@@ -95,5 +114,6 @@ export class SliderComponent implements OnInit {
   //Set example text if input is empty
   exsFunc($event: any) {
     this.exsText = $event.target.value
+    console.log($event.target)
   }
 }

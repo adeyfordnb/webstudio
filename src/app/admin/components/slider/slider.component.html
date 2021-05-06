@@ -1,64 +1,163 @@
 <div class="wrap">
 
+  <div class="name-page"><h2>Edit main page/</h2></div>
+
   <flash-messages></flash-messages>
 
-<!-- LEFT SIDE -->
-  <div class="left-side sides">
+  <div class="block">
+    <!-- LEFT SIDE -->
+    <div class="left-side sides">
 
-    <div class="img">
+      <div class="img">
+        <div class="block-change-text">
 
-      <div class="block-change-text">
-
-        <div class="carousel carousel-text">
-          <div class="slide-text">
-            <p class="block-change-text-p">{{ exsText ? exsText : 'example' }}</p>
+          <div class="carousel carousel-text">
+            <div class="slide-text">
+              <p class="block-change-text-p">{{ exsText ? exsText : 'example' }}</p>
+            </div>
           </div>
+
         </div>
 
+        <div class="carousel img-slider">
+          <div class="slide">
+            <div class="text-block">
+              <h5>{{ mainPageObj.mainText.firstBlock ? mainPageObj.mainText.firstBlock : 'example text' }}</h5>
+              <h1>{{ mainPageObj.mainText.secondBlock ? mainPageObj.mainText.secondBlock : 'your text' }}</h1>
+            </div>
+            <img class="slide-img" [src]="downloadUrl ? downloadUrl : placeholder">
+          </div>
+        </div>
       </div>
 
-      <div class="carousel img-slider">
-        <div class="slide">
-          <img class="slide-img" [src]="downloadUrl ? downloadUrl : placeholder">
+      <div class="example-text-block">
+        <div class="counter">
+            <div class="slide-text">
+              <p class="counter-number">1</p>
+            </div>
+            <div class="slide-text">
+              <p class="counter-number">2</p>
+            </div>
+        </div>
+        <div class="text-left-side">
+          <p>The milk photo studio has a lot of rooms that are suitable for different styles of photoshoots.
+            Examples you can see on the slide.</p>
+        </div>
+        <div class="buttons">
+          <button [disabled] class="button">pre</button>
+          <span id="line-button"></span>
+          <button [disabled] class="button">nxt</button>
         </div>
       </div>
     </div>
-  </div>
 
-<!-- RIGHT SIDE -->
-  <div class="right-side sides">
+    <!-- RIGHT SIDE -->
+    <div class="right-side sides">
 
-    <div class="main-right-box">
-      <div class="shadow"></div>
+      <div class="name-block">
+        <h2>Blocks</h2>
+      </div>
+
+      <div class="text-input-box">
+        <form [formGroup]="formSlider">
+          <div class="block-icon">
+            <fa-icon class="fa-1x fa-icon" [icon]="text"></fa-icon>
+            <h1 class="admin-text name-section">Set main text</h1>
+          </div>
+          <div class="form-control main-text-slider-control">
+            <div class="main-form-block" id="first-text-input">
+              <label for="first-block">First block:</label>
+              <input id="first-block" formControlName="textSlide" name="first-block-input" placeholder="photo studio" type="text" class="inputs" (keyup)="exsFunc($event)">
+            </div>
+            <div class="main-form-block">
+              <label for="second-block">Second block:</label>
+              <input id="second-block" formControlName="textSlide" placeholder="milk photo" type="text" class="inputs">
+            </div>
+            <button type="submit" class="send-btn btn-update-text">Update</button>
+          </div>
+        </form>
+      </div>
 
       <div class="text-input-box">
         <form [formGroup]="formSlider" (ngSubmit)="uploadSlide()">
-          <h1 class="admin-text">Text Slider</h1>
-          <div class="form-control">
-            <input formControlName="textSlide" type="text" class="inputs" (keyup)=exsFunc($event)>
+          <div class="block-icon">
+            <fa-icon class="fa-1x fa-icon" [icon]="img"></fa-icon>
+            <h1 class="admin-text name-section">Add Slider</h1>
+          </div>
+          <div class="row-block">
+            <div class="form-control">
+              <div class="main-form-block">
+                <label for="text-slider-form">Text slider:</label>
+                <input id="text-slider-form" formControlName="textSlide" placeholder="portrait" type="text" class="inputs" (keyup)=exsFunc($event)>
+                <button [disabled]="formSlider.invalid || !fullInput" type="submit" class="send-btn">Update</button>
+              </div>
 
-            <span class="error-block" *ngIf="formSlider.get('textSlide').touched && formSlider.get('textSlide').invalid">
-              <small class="error-message" *ngIf="formSlider.get('textSlide').errors.required">
-                Can't be empty!
-              </small>
-              <small class="error-message" *ngIf="formSlider.get('textSlide').errors.minlength">
-                Min length of text 3 symbols.
-              </small>
-            </span>
+              <span class="error-block" *ngIf="formSlider.get('textSlide').touched && formSlider.get('textSlide').invalid">
+                <small class="error-message" *ngIf="formSlider.get('textSlide').errors.required">
+                  Can't be empty!
+                </small>
+                <small class="error-message" *ngIf="formSlider.get('textSlide').errors.minlength">
+                  Min length of text 3 symbols.
+                </small>
+              </span>
+            </div>
+
+            <label class="file-upload">
+              <div class="img-example" *ngIf="downloadUrl">
+                <img [src]="downloadUrl">
+              </div>
+              <fa-icon class="fa-2x icon" [icon]="image"></fa-icon>
+              <input (change)="upload($event)" type="file" accept="*.png.jpg">
+            </label>
           </div>
 
-          <label class="file-upload">
-            <div class="img-example" *ngIf="downloadUrl">
-              <img [src]="downloadUrl">
-            </div>
-            <fa-icon class="fa-7x icon" [icon]="image"></fa-icon>
-            <input (change)="upload($event)" type="file" accept="*.png.jpg">
-          </label>
-
-          <button [disabled]="formSlider.invalid || !fullInput" type="submit" class="send-btn">Send</button>
         </form>
       </div>
-    </div>
 
+      <div class="text-input-box">
+        <form [formGroup]="formSlider">
+          <div class="block-icon">
+            <fa-icon class="fa-1x fa-icon" [icon]="description"></fa-icon>
+            <h1 class="admin-text name-section">Description</h1>
+          </div>
+          <textarea class="textarea" name="" id="" cols="50" rows="5" placeholder="Write description here..."></textarea>
+          <button type="submit" class="send-btn btn-update-text">Update</button>
+        </form>
+      </div>
+
+      <div class="text-input-box">
+        <form [formGroup]="formSlider">
+          <div class="block-icon">
+            <fa-icon class="fa-1x fa-icon" [icon]="social"></fa-icon>
+            <h1 class="admin-text name-section">Social links</h1>
+          </div>
+          <div class="main-social-block">
+            <div class="main-form-block social-links">
+              <label for="instagram">Instagram:</label>
+              <label for="telegram">Telegram:</label>
+              <label for="facebook">Facebook:</label>
+            </div>
+            <div class="inputs-main-block">
+              <div class="margin-block">
+                <input id="instagram" formControlName="textSlide" placeholder="photo studio" type="text" class="inputs inputs-width">
+                <button class="btn-check">Check</button>
+              </div>
+              <div class="margin-block">
+                <input id="telegram" formControlName="textSlide" placeholder="photo studio" type="text" class="inputs inputs-width">
+                <button class="btn-check">Check</button>
+              </div>
+              <div class="margin-block">
+                <input id="facebook" formControlName="textSlide" placeholder="photo studio" type="text" class="inputs inputs-width">
+                <button class="btn-check">Check</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-control main-text-slider-control">
+            <button type="submit" class="send-btn btn-update-text">Update</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
   </div>
 </div>

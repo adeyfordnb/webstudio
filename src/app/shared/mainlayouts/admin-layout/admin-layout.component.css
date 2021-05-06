@@ -1,3 +1,17 @@
+.admin-logo {
+  height: 130px;
+  color: #A4A6B3;
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: bold;
+}
+
+.admin-icon {
+  color: #3751FF;
+  margin-right: 10px;
+}
+
 ul > li {
   list-style: none;
 }
@@ -21,11 +35,11 @@ ul > li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 255px;
   height: 100%;
-  background-color: #363740;
-  position: relative;
+  background-color: #161616;
+  position: fixed;
+  border-right: 1px solid rgba(223, 224, 235, .1);
 }
 
 .list-links {
@@ -51,6 +65,7 @@ ul > li {
 
 .components {
   width: 100%;
+  margin-left: 255px;
 }
 
 /*BTN-LOGOUT*/
@@ -62,7 +77,7 @@ ul > li {
   padding: 0;
   outline: none;
   border: none;
-  background-color: #363740;
+  background-color: #161616;
   color: #A4A6B3;
   font-family: 'Roboto Condensed', sans-serif;
   text-transform: uppercase;
@@ -75,6 +90,6 @@ ul > li {
 
 .active-route {
   color: #DDE2FF;
-  background-color: #3F4049;
+  background-color: #212122;
   border-left: 1px solid #DDE2FF;
 }

@@ -4,6 +4,7 @@ import {AuthService} from "../../../admin/shared/auth.service";
 import { faFileImage } from '@fortawesome/free-solid-svg-icons';
 import { faPortrait} from '@fortawesome/free-solid-svg-icons';
 import { faCog} from '@fortawesome/free-solid-svg-icons';
+import { faTools} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-admin-layout',
@@ -16,6 +17,7 @@ export class AdminLayoutComponent implements OnInit{
   slideIcon = faFileImage;
   post = faPortrait;
   settings = faCog;
+  tools = faTools;
 
   constructor(
     private router: Router,

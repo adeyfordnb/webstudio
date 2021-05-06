@@ -22,9 +22,8 @@ img {
 }
 
 .admin-text {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Mulish', sans-serif;
   font-size: 18px;
-  text-transform: uppercase;
   font-weight: bold;
   color: #FFFFFF;
   border-bottom: 1px solid #FF9900;
@@ -45,8 +44,9 @@ img {
 
 .form-control > input {
   width: 291px;
-  height: 38px;
-  border-radius: 50px;
+  height: 30px;
+  background-color: #272727;
+  color: #DFE0EB;
   border: none;
   outline: none;
   padding: 0 15px;
