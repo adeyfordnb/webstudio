@@ -11,6 +11,7 @@ import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} 
 import {finalize} from 'rxjs/operators';
 import {SlideService} from '../../shared/slide.service';
 import {FlashMessagesService} from 'flash-messages-angular';
+import {MainObj} from '../../../shared/interfaces';
 
 @Component({
   selector: 'app-slider',
@@ -20,6 +21,7 @@ import {FlashMessagesService} from 'flash-messages-angular';
 export class SliderComponent implements OnInit {
 
   formSlider: FormGroup = new FormGroup({});
+  formMainPage: FormGroup = new FormGroup({});
   path: string = '';
   fullInput:boolean = false;
 
@@ -38,12 +40,23 @@ export class SliderComponent implements OnInit {
   downloadUrl: string = '';
 
   //The object which will be send to firebase
-  mainPageObj = {
+  mainPageObj: MainObj = {
     mainText: {
       firstBlock: '',
       secondBlock: ''
     },
-    description: 'In this block will be show text which your type in this area. The recommend numbers of symbol are 350.'
+    description: '',
+    links: {
+      instagram: '',
+      telegram: '',
+      facebook: ''
+    }
+  }
+
+  links = {
+    instagram: '',
+    telegram: '',
+    facebook: ''
   }
 
   constructor(
@@ -53,11 +66,29 @@ export class SliderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.slideService.getMainObj().subscribe(doc => {
+      if(doc) {
+        this.mainPageObj = doc;
+        this.links = doc.links;
+        console.log(this.mainPageObj)
+      }
+    })
+
     this.formSlider = new FormGroup({
       textSlide: new FormControl(null, [
         Validators.required,
         Validators.minLength(3)
       ])
+    })
+
+    this.formMainPage = new FormGroup({
+      firstTextBlock: new FormControl(null, Validators.required),
+      secondTextBlock: new FormControl(null, Validators.required),
+      textareaDescription: new FormControl(null, Validators.required),
+      instagramControl: new FormControl(null, Validators.required),
+      telegramControl: new FormControl(null, Validators.required),
+      facebookControl: new FormControl(null, Validators.required)
     })
   }
 
@@ -113,7 +144,46 @@ export class SliderComponent implements OnInit {
 
   //Set example text if input is empty
   exsFunc($event: any) {
-    this.exsText = $event.target.value
-    console.log($event.target)
+
+    switch ($event.target.attributes.getNamedItem('ng-reflect-name').value) {
+      case 'firstTextBlock':
+        this.mainPageObj.mainText.firstBlock = $event.target.value
+        break
+      case 'secondTextBlock':
+        this.mainPageObj.mainText.secondBlock = $event.target.value
+        break
+      case 'textSlide':
+        this.exsText = $event.target.value
+        break
+      case 'textareaDescription':
+        this.mainPageObj.description = $event.target.value
+    }
+  }
+
+  setLinks($event: any){
+    switch ($event.target.attributes.getNamedItem('ng-reflect-name').value) {
+      case 'instagramControl':
+        this.links.instagram = $event.target.value
+        break
+      case 'telegramControl':
+        this.links.telegram = $event.target.value
+        break
+      case 'facebookControl':
+        this.links.facebook = $event.target.value
+        break
+    }
+    console.log(this.links)
+
+  }
+
+  //Update main object
+  updateMainObj() {
+    this.slideService.updateMainObjService(this.mainPageObj)
+  }
+
+  //Update links
+  updateLinks(){
+    this.mainPageObj.links = this.links;
+    this.slideService.updateMainObjService(this.mainPageObj)
   }
 }

@@ -40,8 +40,7 @@
             </div>
         </div>
         <div class="text-left-side">
-          <p>The milk photo studio has a lot of rooms that are suitable for different styles of photoshoots.
-            Examples you can see on the slide.</p>
+          <p>{{ mainPageObj.description ? mainPageObj.description : 'In this block will be show text which your type in this area. The recommend numbers of symbol are 350.' }}</p>
         </div>
         <div class="buttons">
           <button [disabled] class="button">pre</button>
@@ -59,7 +58,7 @@
       </div>
 
       <div class="text-input-box">
-        <form [formGroup]="formSlider">
+        <form [formGroup]="formMainPage" (ngSubmit)="updateMainObj()">
           <div class="block-icon">
             <fa-icon class="fa-1x fa-icon" [icon]="text"></fa-icon>
             <h1 class="admin-text name-section">Set main text</h1>
@@ -67,11 +66,24 @@
           <div class="form-control main-text-slider-control">
             <div class="main-form-block" id="first-text-input">
               <label for="first-block">First block:</label>
-              <input id="first-block" formControlName="textSlide" name="first-block-input" placeholder="photo studio" type="text" class="inputs" (keyup)="exsFunc($event)">
+              <input id="first-block"
+                     formControlName="firstTextBlock"
+                     name="first-block-input"
+                     placeholder="example text"
+                     type="text" class="inputs"
+                     value="{{ mainPageObj.mainText.firstBlock }}"
+                     (keyup)="exsFunc($event)"
+              >
             </div>
             <div class="main-form-block">
               <label for="second-block">Second block:</label>
-              <input id="second-block" formControlName="textSlide" placeholder="milk photo" type="text" class="inputs">
+              <input id="second-block"
+                     formControlName="secondTextBlock"
+                     placeholder="your text" type="text"
+                     class="inputs"
+                     value="{{ mainPageObj.mainText.secondBlock }}"
+                     (keyup)="exsFunc($event)"
+              >
             </div>
             <button type="submit" class="send-btn btn-update-text">Update</button>
           </div>
@@ -88,7 +100,7 @@
             <div class="form-control">
               <div class="main-form-block">
                 <label for="text-slider-form">Text slider:</label>
-                <input id="text-slider-form" formControlName="textSlide" placeholder="portrait" type="text" class="inputs" (keyup)=exsFunc($event)>
+                <input id="text-slider-form" formControlName="textSlide" placeholder="example" type="text" class="inputs" (keyup)=exsFunc($event)>
                 <button [disabled]="formSlider.invalid || !fullInput" type="submit" class="send-btn">Update</button>
               </div>
 
@@ -115,18 +127,18 @@
       </div>
 
       <div class="text-input-box">
-        <form [formGroup]="formSlider">
+        <form [formGroup]="formMainPage" (ngSubmit)="updateMainObj()">
           <div class="block-icon">
             <fa-icon class="fa-1x fa-icon" [icon]="description"></fa-icon>
             <h1 class="admin-text name-section">Description</h1>
           </div>
-          <textarea class="textarea" name="" id="" cols="50" rows="5" placeholder="Write description here..."></textarea>
+          <textarea (keyup)="exsFunc($event)" formControlName="textareaDescription" class="textarea" name="" id="" cols="50" rows="5" placeholder="Write description here..."></textarea>
           <button type="submit" class="send-btn btn-update-text">Update</button>
         </form>
       </div>
 
       <div class="text-input-box">
-        <form [formGroup]="formSlider">
+        <form [formGroup]="formMainPage" (ngSubmit)="updateLinks()">
           <div class="block-icon">
             <fa-icon class="fa-1x fa-icon" [icon]="social"></fa-icon>
             <h1 class="admin-text name-section">Social links</h1>
@@ -139,16 +151,37 @@
             </div>
             <div class="inputs-main-block">
               <div class="margin-block">
-                <input id="instagram" formControlName="textSlide" placeholder="photo studio" type="text" class="inputs inputs-width">
-                <button class="btn-check">Check</button>
+                <input id="instagram"
+                       formControlName="instagramControl"
+                       placeholder="Set link for instagram..."
+                       value="{{ mainPageObj.links.instagram }}"
+                       type="text"
+                       class="inputs inputs-width"
+                       (keyup)="setLinks($event)"
+                >
+                <a class="btn-check" target="_blank" href="{{ mainPageObj.links.instagram }}">Check</a>
               </div>
               <div class="margin-block">
-                <input id="telegram" formControlName="textSlide" placeholder="photo studio" type="text" class="inputs inputs-width">
-                <button class="btn-check">Check</button>
+                <input id="telegram"
+                       formControlName="telegramControl"
+                       placeholder="Set link for telegram..."
+                       value="{{ mainPageObj.links.telegram }}"
+                       type="text"
+                       class="inputs inputs-width"
+                       (keyup)="setLinks($event)"
+                >
+                <a class="btn-check" target="_blank" href="{{ mainPageObj.links.telegram }}">Check</a>
               </div>
               <div class="margin-block">
-                <input id="facebook" formControlName="textSlide" placeholder="photo studio" type="text" class="inputs inputs-width">
-                <button class="btn-check">Check</button>
+                <input id="facebook"
+                       formControlName="facebookControl"
+                       placeholder="Set link for facebook..."
+                       value="{{ mainPageObj.links.facebook }}"
+                       type="text"
+                       class="inputs inputs-width"
+                       (keyup)="setLinks($event)"
+                >
+                <a class="btn-check" target="_blank" href="{{ mainPageObj.links.facebook }}">Check</a>
               </div>
             </div>
           </div>

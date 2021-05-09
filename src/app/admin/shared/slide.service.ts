@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {Slide} from '../../shared/interfaces';
+import {MainObj, Slide} from '../../shared/interfaces';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -8,6 +8,7 @@ import {map} from 'rxjs/operators';
 
 export class SlideService {
 
+  mainObjFirestore: AngularFirestoreCollection;
   slidesCollection: AngularFirestoreCollection<Slide>;
   slides: Observable<Slide[]>
 
@@ -15,6 +16,7 @@ export class SlideService {
     private afs:AngularFirestore
   ) {
     this.slidesCollection = this.afs.collection('slides');
+    this.mainObjFirestore = this.afs.collection('objects')
   }
 
   //PostSlide
@@ -32,6 +34,16 @@ export class SlideService {
     )
 
     return this.slides;
+  }
+
+  //Functions main object
+  updateMainObjService(mainObj: MainObj){
+    this.mainObjFirestore.doc('mainObject').set(mainObj)
+  }
+
+  getMainObj(){
+    // this.mainObjFirestore.valueChanges().subscribe(res =>{console.log(res[0])})
+    return this.mainObjFirestore.doc('mainObject').valueChanges()
   }
 
 }

@@ -14,3 +14,16 @@ export interface Slide {
   text: string,
   id?: string
 }
+
+export interface MainObj {
+  mainText?: {
+    firstBlock: string,
+    secondBlock: string
+  },
+  description?: string,
+  links?: {
+    instagram: string,
+    telegram: string,
+    facebook: string
+  }
+}

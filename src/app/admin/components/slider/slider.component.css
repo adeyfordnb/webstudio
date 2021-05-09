@@ -21,6 +21,11 @@
 
 .margin-block {
   margin-bottom: 15px;
+  display: flex;
+}
+
+.margin-block > a {
+  text-decoration: none;
 }
 
 .btn-check {
@@ -35,6 +40,9 @@
   background-color: #6C6C6C;
   color: #DDE2FF;
   cursor: pointer;
+  display: block;
+  text-align: center;
+  line-height: 30px;
 }
 
 .block {
@@ -324,6 +332,10 @@ input[type="file"] {
 
 .btn-update-text {
   margin: 14px auto 30px auto;
+}
+
+.button {
+  cursor: default!important;
 }
 
 /*ERRORS BLOCK*/
